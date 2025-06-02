@@ -20,7 +20,8 @@
             <% files.forEach(function(val){ %>
                 <div class="task w-72 px-3 py-2 bg-zinc-800 m-3 rounded-md">
                     <h1><%= val %></h1>
-                    <a href="" class="text-blue-500 inline-block mt-5 ">read more</a>
+                    <a href="/file/<%= val %>" class="text-blue-500 inline-block mt-5 ">read more</a>
+                    <a href="/changename/<%= val %>" class="text-zinc-400 p-10">Edit File Name</a>
                 </div>
             <% }) %>
             <% }else{ %>

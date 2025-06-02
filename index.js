@@ -13,6 +13,19 @@ app.get('/',function(req, res) {
         res.render('index.ejs',{files: files});
     })
 })
+app.get('/file/:filename', function(req, res) {
+    fs.readFile(`./files/${req.params.filename}`, 'utf8', function(err, filedata) {
+        res.render('show.ejs', {filenaam: req.params.filename, content: filedata});
+})
+})
+app.get('/changename/:filename', function(req, res) {
+    res.render('changename.ejs', {oldname: req.params.filename});    
+})  
+app.post('/edit', function(req, res) {
+    fs.rename(`./files/${req.body.oldname}`, `./files/${req.body.newname}`, function(err, filedata) {
+        res.redirect('/');
+})
+})  
 app.post('/create', function(req, res) {
     fs.writeFile(`./files/${req.body.title.split(' ').join('')}`, req.body.details, function(err){
         if(err) {
